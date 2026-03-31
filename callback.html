@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Autorizando Cut Nerd...</title>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px; font-family: sans-serif;">
+        <h2>Código de autorização encontrado!</h2>
+        <p>Redirecionando para o seu n8n local...</p>
+    </div>
+
+    <script>
+        // Pega o código que o TikTok mandou na URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        if (code) {
+            // Chuta o código para o seu n8n usando o link que você me mandou
+            window.location.href = `http://localhost:5678/webhook/2e03bd3d-34ff-4353-a0ad-a44043f9c653?code=${code}`;
+        } else {
+            document.body.innerHTML = "<h2>Erro: Código não encontrado. Verifique a URL.</h2>";
+        }
+    </script>
+</body>
+</html>
