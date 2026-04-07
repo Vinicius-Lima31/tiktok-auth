@@ -60,7 +60,7 @@
             // Pequeno delay para o auditor ver que a página carregou o código
             setTimeout(() => {
                 window.location.href = `http://localhost:5678/webhook/2e03bd3d-34ff-4353-a0ad-a44043f9c653?code=${code}`;
-            }, 2000);
+            }, 10000);
 
         } else {
             displayCode.innerText = "NÃO ENCONTRADO";
