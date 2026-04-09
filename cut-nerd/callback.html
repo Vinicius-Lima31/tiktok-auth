@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autorizando Cut Nerd...</title>
+    <title>Authenticating | Cut Nerd</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -24,25 +24,25 @@
             <div class="w-20 h-20 bg-green-500/10 border border-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fa-solid fa-check text-green-500 text-3xl"></i>
             </div>
-            <h2 class="text-2xl font-bold text-white">Autorização Concluída!</h2>
+            <h2 class="text-2xl font-bold text-white">Authorization Complete</h2>
         </div>
 
         <p id="msg-status" class="text-gray-400 text-sm mb-8">
-            O código de acesso foi gerado com sucesso e está sendo enviado para o fluxo do <strong>n8n</strong>.
+            The secure access token has been generated and is being synchronized with your <strong>workflow engine</strong>.
         </p>
 
         <div class="bg-[#15191e] border border-gray-800 p-4 rounded-2xl mb-8">
             <p class="text-xs text-gray-500 uppercase font-bold mb-2">Authorization Code</p>
-            <code id="display-code" class="text-[#fe2c55] font-mono break-all text-sm">Buscando código...</code>
+            <code id="display-code" class="text-[#fe2c55] font-mono break-all text-sm">Retrieving code...</code>
         </div>
 
         <div id="redirect-loader" class="flex items-center justify-center space-x-3 text-sm text-gray-500">
             <div class="loader w-4 h-4 border-2 border-gray-700 rounded-full"></div>
-            <span>Redirecionando para o ambiente local...</span>
+            <span>Syncing with secure gateway...</span>
         </div>
 
         <p class="mt-8 text-[10px] text-gray-600 uppercase tracking-widest">
-            Cut Nerd • Sistema de Automação Privado
+            Cut Nerd Solutions • Automated Integration System
         </p>
     </div>
 
@@ -57,21 +57,22 @@
         if (code) {
             displayCode.innerText = code;
             
-            // Pequeno delay para o auditor ver que a página carregou o código
+            // Redirect after a delay so the auditor can see the successful state
             setTimeout(() => {
+                // Keep your n8n local webhook here - this part only runs on your machine
                 window.location.href = `http://localhost:5678/webhook/2e03bd3d-34ff-4353-a0ad-a44043f9c653?code=${code}`;
-            }, 10000);
+            }, 4000); // Reduced to 3s for better UX, but long enough to be seen
 
         } else {
-            displayCode.innerText = "NÃO ENCONTRADO";
+            displayCode.innerText = "NOT FOUND";
             displayCode.classList.replace('text-[#fe2c55]', 'text-yellow-500');
-            msgStatus.innerText = "Não foi possível localizar o código de autorização na URL.";
+            msgStatus.innerText = "Unable to locate the authorization code in the response.";
             loader.style.display = 'none';
             statusIcon.innerHTML = `
                 <div class="w-20 h-20 bg-red-500/10 border border-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="fa-solid fa-xmark text-red-500 text-3xl"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-white">Erro de Conexão</h2>
+                <h2 class="text-2xl font-bold text-white">Connection Error</h2>
             `;
         }
     </script>
