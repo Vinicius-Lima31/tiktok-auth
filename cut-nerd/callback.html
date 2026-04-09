@@ -3,78 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authenticating | Cut Nerd</title>
+    <title>Authorization Successful | Cut Nerd</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .loader {
-            border-top-color: #fe2c55;
-            animation: spinner 1.5s linear infinite;
-        }
-        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .code-box { word-break: break-all; font-family: monospace; background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(244, 63, 94, 0.2); }
     </style>
 </head>
-<body class="bg-[#0b0e11] text-gray-100 min-h-screen flex items-center justify-center p-6">
-
-    <div class="max-w-md w-full bg-[#0f1216] border border-gray-800 p-8 rounded-3xl shadow-2xl text-center">
-        
-        <div id="status-icon" class="mb-6">
-            <div class="w-20 h-20 bg-green-500/10 border border-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fa-solid fa-check text-green-500 text-3xl"></i>
+<body class="min-h-screen flex items-center justify-center p-6">
+    <div class="glass max-w-lg w-full rounded-3xl p-8 text-center shadow-2xl">
+        <div class="mb-6 flex justify-center">
+            <div class="bg-green-500/20 p-4 rounded-full">
+                <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
             </div>
-            <h2 class="text-2xl font-bold text-white">Authorization Complete</h2>
         </div>
 
-        <p id="msg-status" class="text-gray-400 text-sm mb-8">
-            The secure access token has been generated and is being synchronized with your <strong>workflow engine</strong>.
-        </p>
+        <h1 class="text-3xl font-bold mb-3">Authorization Complete</h1>
+        <p class="text-slate-400 mb-8">The secure access token has been generated. You can now copy the code below for your manual integration.</p>
 
-        <div class="bg-[#15191e] border border-gray-800 p-4 rounded-2xl mb-8">
-            <p class="text-xs text-gray-500 uppercase font-bold mb-2">Authorization Code</p>
-            <code id="display-code" class="text-[#fe2c55] font-mono break-all text-sm">Retrieving code...</code>
+        <div class="code-box rounded-xl p-6 mb-4 text-rose-500 text-sm font-semibold tracking-wider">
+            <span class="block uppercase text-[10px] text-slate-500 mb-2 tracking-[0.2em]">Manual Authorization Code</span>
+            <div id="authCode" class="select-all cursor-text">Retrieving...</div>
         </div>
+        
+        <p class="text-[10px] text-slate-500 italic">This page will not redirect. Copy the code above manually.</p>
 
-        <div id="redirect-loader" class="flex items-center justify-center space-x-3 text-sm text-gray-500">
-            <div class="loader w-4 h-4 border-2 border-gray-700 rounded-full"></div>
-            <span>Syncing with secure gateway...</span>
-        </div>
-
-        <p class="mt-8 text-[10px] text-gray-600 uppercase tracking-widest">
-            Cut Nerd Solutions • Automated Integration System
-        </p>
+        <p class="mt-10 text-xs text-slate-500 uppercase tracking-widest border-t border-white/5 pt-6">Cut Nerd Solutions • Automated Integration System</p>
     </div>
 
     <script>
+        // Pega o código da URL
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
-        const displayCode = document.getElementById('display-code');
-        const msgStatus = document.getElementById('msg-status');
-        const statusIcon = document.getElementById('status-icon');
-        const loader = document.getElementById('redirect-loader');
-
+        
         if (code) {
-            displayCode.innerText = code;
-            
-            // Redirect after a delay so the auditor can see the successful state
-            setTimeout(() => {
-                // Keep your n8n local webhook here - this part only runs on your machine
-                window.location.href = `http://localhost:5678/webhook/2e03bd3d-34ff-4353-a0ad-a44043f9c653?code=${code}`;
-            }, 4000); // Reduced to 3s for better UX, but long enough to be seen
-
+            document.getElementById('authCode').innerText = code;
         } else {
-            displayCode.innerText = "NOT FOUND";
-            displayCode.classList.replace('text-[#fe2c55]', 'text-yellow-500');
-            msgStatus.innerText = "Unable to locate the authorization code in the response.";
-            loader.style.display = 'none';
-            statusIcon.innerHTML = `
-                <div class="w-20 h-20 bg-red-500/10 border border-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fa-solid fa-xmark text-red-500 text-3xl"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-white">Connection Error</h2>
-            `;
+            document.getElementById('authCode').innerText = "No code found in URL";
+            document.getElementById('authCode').classList.add('text-slate-500');
         }
+
+        // REMOVIDO: window.location.href (Não existe mais redirecionamento automático)
     </script>
 </body>
 </html>
