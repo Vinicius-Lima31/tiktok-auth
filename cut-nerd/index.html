@@ -9,7 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .bg-tiktok-gradient {
+        .bg-auth-gradient {
             background: radial-gradient(circle at top right, #fe2c55 0%, #25f4ee 100%);
         }
     </style>
@@ -32,7 +32,7 @@
 
     <main class="flex-grow max-w-5xl mx-auto px-6 py-16 md:py-24 text-center">
         <div class="inline-block px-4 py-1 mb-6 border border-gray-700 rounded-full bg-gray-800/50 text-xs font-semibold text-cyan-400 uppercase tracking-widest">
-            TikTok Developer Partner App
+            Social Media Integration
         </div>
         <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
             Escalando o seu <br>
@@ -44,20 +44,17 @@
             O <strong>Cut Nerd</strong> é uma plataforma proprietária de automação via n8n desenvolvida para gerenciar, otimizar e publicar conteúdos para o ecossistema <strong>@cut.nerd</strong>.
         </p>
 
-	<div class="mb-16 flex flex-col items-center justify-center text-center w-full">
-            <a href="https://www.tiktok.com/v2/auth/authorize/?client_key=sbaw8abq938u0pz2o7&scope=user.info.basic,video.upload,video.publish&response_type=code&redirect_uri=https://vinicius-lima31.github.io/tiktok-auth/cut-nerd/callback.html&state=vinicius_analytics" 
-               class="inline-flex items-center justify-center space-x-3 bg-tiktok-gradient hover:opacity-95 text-white font-bold py-4 px-10 rounded-2xl transition-all transform hover:scale-105 shadow-xl shadow-[#fe2c55]/20">
-                
-                <svg class="w-5 h-5 fill-white" viewBox="0 0 448 512">
-                    <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.18,121.18,0,0,0,67,20.14Z"/>
-                </svg>
-                
-                <span class="tracking-tight text-sm">CONECTAR CONTA TIKTOK</span>
-            </a>
-            <p class="mt-4 text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">
-                Área Restrita: Acesso Administrativo @cut.nerd
-            </p>
-        </div>
+<div class="mb-16 flex flex-col items-center justify-center w-full">
+    <a href="https://www.tiktok.com/v2/auth/authorize/?client_key=sbaw8abq938u0pz2o7&scope=user.info.basic,video.upload,video.publish&response_type=code&redirect_uri=https://vinicius-lima31.github.io/tiktok-auth/cut-nerd/callback.html&state=vinicius_analytics" 
+       class="inline-flex items-center justify-center bg-auth-gradient hover:opacity-95 text-white font-bold py-4 px-10 rounded-2xl transition-all transform hover:scale-105 shadow-xl shadow-[#fe2c55]/20 w-fit">
+        
+        <span class="tracking-tight text-sm text-center">INICIAR AUTORIZAÇÃO</span>
+    </a>
+    
+    <p class="mt-4 text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold text-center">
+        Área Restrita: Acesso Administrativo @cut.nerd
+    </p>
+</div>
 
         <div id="features" class="grid md:grid-cols-3 gap-6 mb-20 text-left">
             <div class="bg-[#15191e] p-6 rounded-2xl border border-gray-800 hover:border-[#fe2c55]/50 transition duration-300">
@@ -114,9 +111,12 @@
                 </a>
             </div>
 
-            <div class="mt-16 pt-8 border-t border-gray-800/50 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 uppercase tracking-widest">
-                <p>© 2026 Cut Nerd Development Group</p>
-                <p class="mt-4 md:mt-0 italic">Ambiente de Produção Autorizado</p>
+            <div class="mt-16 pt-8 border-t border-gray-800/50 flex flex-col items-center text-[10px] text-gray-600 uppercase tracking-widest">
+                <div class="flex flex-col md:flex-row justify-between w-full mb-4">
+                    <p>© 2026 Cut Nerd Development Group</p>
+                    <p class="mt-4 md:mt-0 italic">Ambiente de Produção Autorizado</p>
+                </div>
+                <p class="text-gray-500 mt-2 normal-case text-xs tracking-normal">O Cut Nerd é uma ferramenta de automação independente e não possui afiliação, patrocínio ou vínculo oficial com plataformas de terceiros.</p>
             </div>
         </div>
     </footer>
